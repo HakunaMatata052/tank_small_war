@@ -13,6 +13,8 @@
             background-color: #f00;
             position: absolute;
             background: url(./images/timg.png);
+            bottom: 0;
+            left: 50%;
         }
 
         .up {
@@ -35,6 +37,7 @@
             width: 500px;
             height: 500px;
             background-color: #010101;
+            position: relative;
         }
 
     </style>
@@ -48,7 +51,7 @@
         function Move(obj, speed) {
             this.ele = document.getElementById(obj);
             this.speed = speed;
-            this.fun = function () {
+            this.move = function () {
                 var dir;
                 var that = this;
                 setInterval(function () {
@@ -82,7 +85,7 @@
 
         }
         var box = new Move("dome", 20);
-        box.fun()
+        box.move()
 
     </script>
 </body>
