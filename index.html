@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>坦克小战</title>
+    <style>
+        #dome {
+            width: 20px;
+            height: 20px;
+            background-color: #f00;
+            position: absolute;
+            background: url(./images/timg.png);
+        }
+
+        .up {
+            transform: rotate(0);
+        }
+
+        .right {
+            transform: rotate(90deg);
+        }
+
+        .down {
+            transform: rotate(180deg);
+        }
+
+        .left {
+            transform: rotate(-90deg);
+        }
+
+        .wrap {
+            width: 500px;
+            height: 500px;
+            background-color: #010101;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div id="dome"></div>
+    </div>
+    <script>
+        function Move(obj, speed) {
+            this.ele = document.getElementById(obj);
+            this.speed = speed;
+            this.fun = function () {
+                var dir;
+                var that = this;
+                setInterval(function () {
+                    switch (dir) {
+                        case 38:
+                            that.ele.className = "up";
+                            that.ele.style.top = that.ele.offsetTop - 1 + 'px'
+                            break;
+                        case 39:
+                            that.ele.className = "right";
+                            that.ele.style.left = that.ele.offsetLeft + 1 + 'px'
+                            break;
+                        case 40:
+                            that.ele.className = "down";
+                            that.ele.style.top = that.ele.offsetTop + 1 + 'px'
+                            break;
+                        case 37:
+                            that.ele.className = "left";
+                            that.ele.style.left = that.ele.offsetLeft - 1 + 'px'
+                            break;
+                    }
+                }, this.speed)
+                document.onkeydown = function (e) {
+                    e = e || window.event;
+                    dir = e.keyCode;
+                }
+                document.onkeyup = function () {
+                    dir = 0;
+                }
+            }
+
+        }
+        var box = new Move("dome", 20);
+        box.fun()
+
+    </script>
+</body>
+
+</html>
